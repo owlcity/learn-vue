@@ -18,6 +18,19 @@ export default {
   components: {
     HelloWorld,
   },
+  beforeRouteEnter(to, from, next) {
+    console.log(to);
+    console.log(from);
+    console.log(next);
+    next((vm) => {
+      console.log(vm);
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    const leave = confirm("您确定要离开吗?");
+    if (leave) next();
+    else next(false);
+  },
   methods: {
     handleClick(type) {
       if (type === "back") this.$router.back();

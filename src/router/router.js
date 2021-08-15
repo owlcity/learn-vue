@@ -15,11 +15,31 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    //  路由对象模式
+    // props: {
+    //   food: "banana",
+    // },
+    // 路由函数模式
+    props: (route) => ({
+      food: route.query.food,
+    }),
   },
   {
     path: "/argu/:name",
     name: "Argu",
     component: () => import("../views/Argu.vue"),
+    /**
+     * 路由传参
+     * 1  属性模式
+     * 2 对象模式
+     * 3 函数模式
+     */
+    props: true,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/login"),
   },
   {
     path: "/parent",
@@ -47,6 +67,10 @@ const routes = [
         name: "Home",
       };
     },
+  },
+  {
+    path: "*",
+    component: () => import("../views/error_404.vue"),
   },
 ];
 
